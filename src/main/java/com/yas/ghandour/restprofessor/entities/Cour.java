@@ -1,6 +1,7 @@
 package com.yas.ghandour.restprofessor.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -9,8 +10,11 @@ import javax.persistence.ManyToOne;
 public class Cour {
 
 	@Id
-	private String Libelle;
-	private int NombreHeure;
+	@GeneratedValue
+	private Long id;
+
+	private String libelle;
+	private int nombreHeure;
 	
 	@ManyToOne
 	private Professor professor;
@@ -24,27 +28,34 @@ public class Cour {
 
 	public Cour(String libelle, int nombreHeure, Professor professor) {
 		super();
-		Libelle = libelle;
-		NombreHeure = nombreHeure;
+		this.libelle = libelle;
+		this.nombreHeure = nombreHeure;
 		this.professor = professor;
 	}
 
+	public Long getId() {
+		return id;
+	}
 
+	public Cour setId(Long id) {
+		this.id = id;
+		return this;
+	}
 
 	public String getLibelle() {
-		return Libelle;
+		return libelle;
 	}
 
 	public void setLibelle(String libelle) {
-		Libelle = libelle;
+		this.libelle = libelle;
 	}
 
 	public int getNombreHeure() {
-		return NombreHeure;
+		return nombreHeure;
 	}
 
 	public void setNombreHeure(int nombreHeure) {
-		NombreHeure = nombreHeure;
+		this.nombreHeure = nombreHeure;
 	}
 
 	public Professor getProfessor() {

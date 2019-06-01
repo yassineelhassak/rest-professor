@@ -1,73 +1,93 @@
 package com.yas.ghandour.restprofessor.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Professor {
 
 	@Id
-	private String Id;
-	private String Nom;
-	private String Prenom;
-	private String Tel;
-	private String Email;
-	private int Niveau;
-	
+	@GeneratedValue
+	private Long id;
+	private String nom;
+	private String prenom;
+	private String tel;
+	private String email;
+	private int niveau;
+
+	@OneToMany
+	private List<Cour> cours;
 	
 	public Professor() {
 		
 	}
 	
-	public Professor(String id) {
-		Id = id;
+	public Professor(Long id) {
+		this.id = id;
 
 	}
 	
-	public Professor(String id,String nom, String prenom, String tel, String email, int niveau) {
-		Id = id;
-		Nom = nom;
-		Prenom = prenom;
-		Tel = tel;
-		Email = email;
-		Niveau = niveau;
+	public Professor(Long id,String nom, String prenom, String tel, String email, int niveau) {
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.tel = tel;
+		this.email = email;
+		this.niveau = niveau;
 	}
-	
+
+	public Professor setId(Long id) {
+		this.id = id;
+		return this;
+	}
+
+	public List<Cour> getCours() {
+		return cours;
+	}
+
+	public Professor setCours(List<Cour> cours) {
+		this.cours = cours;
+		return this;
+	}
+
 	public String getNom() {
-		return Nom;
+		return nom;
 	}
 	public void setNom(String nom) {
-		Nom = nom;
+		this.nom = nom;
 	}
 	public String getPrenom() {
-		return Prenom;
+		return prenom;
 	}
 	public void setPrenom(String prenom) {
-		Prenom = prenom;
+		this.prenom = prenom;
 	}
-	public String getId() {
-		return Id;
+	public Long getId() {
+		return id;
 	}
-	public void setNumId(String id) {
-		Id = id;
+	public void setNumId(Long id) {
+		this.id = id;
 	}
 	public String getTel() {
-		return Tel;
+		return tel;
 	}
 	public void setTel(String tel) {
-		Tel = tel;
+		this.tel = tel;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	public int getNiveau() {
-		return Niveau;
+		return niveau;
 	}
 	public void setNiveau(int niveau) {
-		Niveau = niveau;
+		this.niveau = niveau;
 	}
 	
 	

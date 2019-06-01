@@ -20,7 +20,7 @@ public class ProfessorService {
 		return professors;
 	}
 	
-	public Professor getById(String id) {
+	public Professor getById(Long id) {
 		return professorRepo.findById(id).get();
 	}
 	
@@ -32,7 +32,7 @@ public class ProfessorService {
 		professorRepo.save(prof);
 	}
 
-	public void deleteById(String id) {
+	public void deleteById(Long id) {
 		professorRepo.deleteById(id);
 	}
 }

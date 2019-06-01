@@ -5,40 +5,37 @@ import java.util.List;
 import com.yas.ghandour.restprofessor.manager.ProfessorService;
 import com.yas.ghandour.restprofessor.entities.Professor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("professor")
 public class ProfessorController {
 
 	@Autowired
 	private ProfessorService professor;
 	
-	@RequestMapping("/professors")
+	@GetMapping("/all")
 	public List<Professor> getAllProfessors(){
 		return professor.getAllProfessors();
 	}
 	
-	@RequestMapping("/professors/{id}")
-	public Professor getProfessor(@PathVariable String id) {
+	@GetMapping("/{id}")
+	public Professor getProfessor(@PathVariable Long id) {
 		return professor.getById(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/professors")
+	@PostMapping
 	public void addProfesor(@RequestBody Professor prof) {
 		professor.addProfessor(prof);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/professors/{id}")
+	@PutMapping(value="{id}")
 	public void putProfesor(@RequestBody Professor prof, @PathVariable String id) {
 		professor.modifyProfessor(prof, id);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/professors/{id}")
-	public void deleteProfessor(@PathVariable String id) {
+	@DeleteMapping(value="{id}")
+	public void deleteProfessor(@PathVariable Long	 id) {
 		professor.deleteById(id);
 	}
 	

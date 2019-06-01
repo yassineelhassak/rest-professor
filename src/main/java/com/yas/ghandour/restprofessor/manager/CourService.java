@@ -28,12 +28,12 @@ public class CourService {
 		return cour;
 	}*/
 	
-	public Cour getCoursById(String id) {
+	public Cour getCoursById(Long id) {
 		return courRepo.findById(id).get();
 	}
 	
 	
-	public Cour addCours(Cour cour, String profId) {
+	public Cour addCours(Cour cour, Long profId) {
 		// TODO Auto-generated method stub
 		//courRepo.save(cour);
 		return profRepo.findById(profId).map(prof -> {cour.setProfessor(prof);
@@ -46,16 +46,15 @@ public class CourService {
 		courRepo.save(cour);
 	}
 
-	public void deleteCours(String id) {
+	public void deleteCours(Long id) {
 		// TODO Auto-generated method stub
-		courRepo.deleteById(id);
+		//courRepo.deleteById(id);
 	}
 
 
-	public List<Cour> getAllCoursByProf(String profId) {
+	public List<Cour> getAllCoursByProf(Long profId) {
 		// TODO Auto-generated method stub
-		//return courRepo.findByProfessorId(profId);
-		return null;
+		return courRepo.findByProfessorId(profId);
 	}
 	
 	
