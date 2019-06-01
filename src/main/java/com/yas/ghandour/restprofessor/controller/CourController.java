@@ -30,7 +30,7 @@ public class CourController {
 		return courService.getCoursById(id);
 	}
 	
-	@PostMapping(value="/ajouter")
+	@PostMapping
 	public void addCour(@RequestBody Cour cour, @PathVariable Long profId) {
 		
 		courService.addCours(cour, profId);
@@ -39,13 +39,13 @@ public class CourController {
 		//courService.addCours(cour);
 	}
 	
-	@PutMapping(value="/modifier")
+	@PutMapping
 	public void updateCour(@RequestBody Cour cour, @PathVariable Long profId) {
 		cour.setProfessor(new Professor(profId));
 		courService.updateCours(cour);
 	}
 	
-	@DeleteMapping(value="/supprimer/{id}")
+	@DeleteMapping(value="{id}")
 	public void deleteCour(@PathVariable Long id) {
 		courService.deleteCours(id);
 	}
