@@ -1,10 +1,12 @@
 package com.yas.ghandour.restprofessor.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-public class Professor {
+public class Professor implements Serializable{
 
 	@Id
 	@GeneratedValue
@@ -13,27 +15,13 @@ public class Professor {
 	private String prenom;
 	private String tel;
 	private String email;
-	private int niveau;
+	private Integer niveau;
 
 	@OneToMany(fetch= FetchType.LAZY, cascade=CascadeType.PERSIST)
-	private List<Cours> cours;
-	
-	public Professor() {
-		
-	}
-	
-	public Professor(Long id) {
-		this.id = id;
+	private Set<Cours> cours;
 
-	}
-	
-	public Professor(Long id,String nom, String prenom, String tel, String email, int niveau) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.tel = tel;
-		this.email = email;
-		this.niveau = niveau;
+	public Long getId() {
+		return id;
 	}
 
 	public Professor setId(Long id) {
@@ -41,48 +29,57 @@ public class Professor {
 		return this;
 	}
 
-	public List<Cours> getCours() {
-		return cours;
-	}
-
-	public Professor setCours(List<Cours> cours) {
-		this.cours = cours;
-		return this;
-	}
-
 	public String getNom() {
 		return nom;
 	}
-	public void setNom(String nom) {
+
+	public Professor setNom(String nom) {
 		this.nom = nom;
+		return this;
 	}
+
 	public String getPrenom() {
 		return prenom;
 	}
-	public void setPrenom(String prenom) {
+
+	public Professor setPrenom(String prenom) {
 		this.prenom = prenom;
+		return this;
 	}
-	public Long getId() {
-		return id;
-	}
+
 	public String getTel() {
 		return tel;
 	}
-	public void setTel(String tel) {
+
+	public Professor setTel(String tel) {
 		this.tel = tel;
+		return this;
 	}
+
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+
+	public Professor setEmail(String email) {
 		this.email = email;
+		return this;
 	}
-	public int getNiveau() {
+
+	public Integer getNiveau() {
 		return niveau;
 	}
-	public void setNiveau(int niveau) {
+
+	public Professor setNiveau(Integer niveau) {
 		this.niveau = niveau;
+		return this;
 	}
-	
-	
+
+	public Set<Cours> getCours() {
+		return cours;
+	}
+
+	public Professor setCours(Set<Cours> cours) {
+		this.cours = cours;
+		return this;
+	}
 }

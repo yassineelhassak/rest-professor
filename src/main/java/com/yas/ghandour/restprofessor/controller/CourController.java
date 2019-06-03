@@ -21,12 +21,12 @@ public class CourController {
 	private CourService courService;
 	
 	//Nok there is a problem with this one
-	@GetMapping("{profId}")
-	public List<Cours> getAllCoursByProf(@PathVariable Long profId){
+	@GetMapping("all/{profId}")
+	public List<CoursDTO> getAllCoursByProf(@PathVariable Long profId){
 			return courService.getAllCoursByProf(profId);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("{id}")
 	public Cours getCourById(@PathVariable Long id) {
 		return courService.getCoursById(id);
 	}
@@ -38,9 +38,8 @@ public class CourController {
 	}
 	
 	@PutMapping
-	public void updateCour(@RequestBody Cours cour, @PathVariable Long profId) {
-		cour.setProfessor(new Professor(profId));
-		courService.updateCours(cour);
+	public void updateCour(@RequestBody CoursDTO coursDTO) {
+		courService.updateCours(coursDTO);
 	}
 	
 	@DeleteMapping(value="{id}")

@@ -8,12 +8,11 @@ import fr.xebia.extras.selma.Mapper;
 /**
  * Created by mac on 6/3/19.
  */
-@Mapper(withIgnoreMissing = IgnoreMissing.DESTINATION)
+@Mapper(withIgnoreMissing = IgnoreMissing.ALL)
 public interface CoursMapper {
 
     CoursDTO asCoursDto(Cours in);
 
     Cours asCours(CoursDTO in);
-
 
 }
