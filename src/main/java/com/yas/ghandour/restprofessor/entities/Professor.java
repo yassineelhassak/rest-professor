@@ -1,9 +1,6 @@
 package com.yas.ghandour.restprofessor.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,8 +15,8 @@ public class Professor {
 	private String email;
 	private int niveau;
 
-	@OneToMany
-	private List<Cour> cours;
+	@OneToMany(fetch= FetchType.LAZY, cascade=CascadeType.PERSIST)
+	private List<Cours> cours;
 	
 	public Professor() {
 		
@@ -44,11 +41,11 @@ public class Professor {
 		return this;
 	}
 
-	public List<Cour> getCours() {
+	public List<Cours> getCours() {
 		return cours;
 	}
 
-	public Professor setCours(List<Cour> cours) {
+	public Professor setCours(List<Cours> cours) {
 		this.cours = cours;
 		return this;
 	}
@@ -67,9 +64,6 @@ public class Professor {
 	}
 	public Long getId() {
 		return id;
-	}
-	public void setNumId(Long id) {
-		this.id = id;
 	}
 	public String getTel() {
 		return tel;

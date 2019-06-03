@@ -4,8 +4,12 @@ package com.yas.ghandour.restprofessor.manager;
 
 import java.util.List;
 
-import com.yas.ghandour.restprofessor.entities.Cour;
+import com.yas.ghandour.restprofessor.dto.CoursDTO;
+import com.yas.ghandour.restprofessor.entities.Cours;
 import com.yas.ghandour.restprofessor.dao.CourRepository;
+import com.yas.ghandour.restprofessor.mapper.CoursMapper;
+import com.yas.ghandour.restprofessor.mapper.ProfessorMapper;
+import fr.xebia.extras.selma.Selma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,11 @@ public class CourService {
 	@Autowired
 	private ProfessorRepository profRepo;
 
+	private CoursMapper coursMapper;
+
+	public CourService() {
+		this.coursMapper = Selma.mapper(CoursMapper.class);
+	}
 	
 	/*public List<Cour> getCoursByProf(String profId) {
 		// TODO Auto-generated method stub
@@ -28,20 +37,17 @@ public class CourService {
 		return cour;
 	}*/
 	
-	public Cour getCoursById(Long id) {
+	public Cours getCoursById(Long id) {
 		return courRepo.findById(id).get();
 	}
 	
 	
-	public Cour addCours(Cour cour, Long profId) {
-		// TODO Auto-generated method stub
-		//courRepo.save(cour);
-		return profRepo.findById(profId).map(prof -> {cour.setProfessor(prof);
-		return courRepo.save(cour);
-		}).get();
+	public Long addCours(CoursDTO coursDTO) {
+		Cours mappedCours = coursMapper.asCours(coursDTO);
+		return courRepo.save(mappedCours).getId();
 	}
 
-	public void updateCours(Cour cour) {
+	public void updateCours(Cours cour) {
 		// TODO Auto-generated method stub
 		courRepo.save(cour);
 	}
@@ -52,9 +58,10 @@ public class CourService {
 	}
 
 
-	public List<Cour> getAllCoursByProf(Long profId) {
+	public List<Cours> getAllCoursByProf(Long profId) {
+		return null;
 		// TODO Auto-generated method stub
-		return courRepo.findByProfessorId(profId);
+		//return courRepo.findByProfessorId(profId);
 	}
 	
 	

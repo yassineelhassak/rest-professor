@@ -1,7 +1,8 @@
 package com.yas.ghandour.restprofessor.controller;
 
 
-import com.yas.ghandour.restprofessor.entities.Cour;
+import com.yas.ghandour.restprofessor.dto.CoursDTO;
+import com.yas.ghandour.restprofessor.entities.Cours;
 import com.yas.ghandour.restprofessor.manager.CourService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,27 +21,24 @@ public class CourController {
 	private CourService courService;
 	
 	//Nok there is a problem with this one
-	//@GetMapping("{profId}")
-	//public List<Cour> getAllCoursByProf(@PathVariable Long profId){
-	//		return courService.getAllCoursByProf(profId);
-	//}
+	@GetMapping("{profId}")
+	public List<Cours> getAllCoursByProf(@PathVariable Long profId){
+			return courService.getAllCoursByProf(profId);
+	}
 	
 	@GetMapping("/{id}")
-	public Cour getCourById(@PathVariable Long id) {
+	public Cours getCourById(@PathVariable Long id) {
 		return courService.getCoursById(id);
 	}
 	
 	@PostMapping
-	public void addCour(@RequestBody Cour cour, @PathVariable Long profId) {
+	public Long addCour(@RequestBody CoursDTO coursDTO) {
 		
-		courService.addCours(cour, profId);
-		
-		//cour.setProfessor(new Professor(profId));
-		//courService.addCours(cour);
+		return courService.addCours(coursDTO);
 	}
 	
 	@PutMapping
-	public void updateCour(@RequestBody Cour cour, @PathVariable Long profId) {
+	public void updateCour(@RequestBody Cours cour, @PathVariable Long profId) {
 		cour.setProfessor(new Professor(profId));
 		courService.updateCours(cour);
 	}
